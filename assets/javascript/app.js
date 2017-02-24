@@ -2,8 +2,8 @@ $(document).ready(function() {
   
 	// Star Trek Trivia Questions - mainly TNG onwards
 var trivia = {
-  "question1": {    
-    "question": "What is the name of Data\'s cat?",
+  question1: {    
+    question: "What is the name of Data\'s cat?",
     possibleAnswers: ["Spot", "Sammy", "Jax", "Garfield"],
     correctAnswer: "Spot",
     quote: '"And though you are not sentient, Spot, and do not comprehend, I nonetheless consider you a true and valued friend."',
@@ -21,13 +21,13 @@ var trivia = {
   },
   question4: {
     question: "Insurrection, picard dance",
-    possibleAnswers: [],
-    correctAnswer: "The Mambo"
+    possibleAnswers: ["Mambo", "Foxtrot", "Waltz", "Rumba"],
+    correctAnswer: "Mambo"
   },
   question5: {
-    question: "",
-    possibleAnswers: [],
-    correctAnswer: ""
+    question: "Which of these characters from TOS <strong><em>did not</em></strong> make an appearance in any TNG episode?",
+    possibleAnswers: ["Kirk", "Spock", "McCoy", "Scotty"],
+    correctAnswer: "Kirk"
   },
   question6: {
     question: "",
@@ -110,7 +110,7 @@ var trivia = {
 var questionArray = [];
 var questionNumber = 0;
 var currentQuestion;
-var timerCount = 30;
+var timerCount;
 var countdown;
 
 
@@ -120,16 +120,13 @@ var countdown;
 
 function getRandomQuestions() {
 	var tempQList = Object.keys(trivia);
-	for (var i = 0; i < 5;) {
-		var randomQName = tempQList[Math.floor(Math.random()*(tempQList.length-1))];
-		//console.log(tempQList[Math.floor(Math.random()*(tempQList.length-1))]);
-		//questionArray.push(randomQName);
-		if (questionArray.indexOf(randomQName) === -1) {
-			questionArray.push(randomQName);
-			i++ //only increment once new question is pushed into question array.
-		}
-
-	}
+  do {
+    var randomQName = tempQList[Math.floor(Math.random()*(tempQList.length-1))];
+    if (questionArray.indexOf(randomQName) === -1) {
+      questionArray.push(randomQName);
+    }
+  }
+  while (questionArray.length < 5);
 }
 getRandomQuestions();
 //console.log(tempQList);
@@ -140,25 +137,58 @@ function displayQuestion() {
 	currentQuestion = questionArray[questionNumber];
 	console.log(currentQuestion);
 	console.log(trivia[currentQuestion]["question"]); //if currentQuestion is a string then I can't seem to use dot notation due to the "" in the string
+  $(".question").html(trivia[currentQuestion]["question"]);
+}
+
+function displayNextQuestion() {
+  if (questionNumber < questionArray.length) {
+    displayQuestion();
+    displayPossibleAnswers();
+    resetTimer();
+    startTimer();
+    checkAnswer();
+  }
 }
 
 function displayPossibleAnswers() {
 	console.log(trivia[currentQuestion]["possibleAnswers"])
+  var answerList = trivia[currentQuestion]["possibleAnswers"];
+  for (var i = 0; i < answerList.length; i++) {
+    var answerButton = $("<button>");
+    answerButton.addClass("answer");
+    answerButton.attr("pos-answer", answerList[i]);
+    answerButton.html("<p>" + answerList[i] + "</p>");
+    $(".answers").append(answerButton);
+  }
+}
+
+function checkAnswer() {
+  $(".answers").on("click", ".answer", function() {
+    stopTimer();
+    $(".answers").empty();
+    if ($(this).attr("pos-answer") === trivia[currentQuestion]["correctAnswer"]) {
+      displayCorrectAnswer();
+    } else {
+      displayWrongAnswer();
+    }
+    setTimeout(displayNextQuestion, 5000);
+  });
 }
 
 function displayCorrectAnswer() {
-	console.log(trivia[currentQuestion]["correctAnswer"])
+	console.log("Correct!");
+  questionNumber++;
 }
 
 function timer() {
 	timerCount--;
 	console.log(timerCount);
 	outOfTime();
-	//display timer here
+	$(".timer").html(timerCount);
 }
 
 function startTimer() {
-	//display starting time here
+	$(".timer").html(timerCount);//display starting time here
 	console.log(timerCount);
 	countdown = setInterval(timer, 1000);
 }
@@ -169,34 +199,29 @@ function stopTimer() {
 
 function outOfTime() {
 	if (timerCount === 0) {
-		clearInterval(countdown)
+		clearInterval(countdown);
+    console.log("Time\'s up!");
+    questionNumber++;
+    setTimeout(displayNextQuestion, 5000);
 	}
 }
 
-function timeConverter(t) { //don't need this, could just show timercount
-
-    //  Takes the current time in seconds and convert it to minutes and seconds (mm:ss).
-    var minutes = Math.floor(t / 60);
-    var seconds = t - (minutes * 60);
-
-    if (seconds < 10) {
-      seconds = "0" + seconds;
-    }
-
-    if (minutes === 0) {
-      minutes = "00";
-    }
-
-    else if (minutes < 10) {
-      minutes = "0" + minutes;
-    }
-
-    return minutes + ":" + seconds;
+function displayWrongAnswer() {
+  console.log("wrong! The correct answer is " + trivia[currentQuestion]["correctAnswer"]);
+  questionNumber++;
 }
 
-displayQuestion();
-displayPossibleAnswers();
-startTimer();
+function resetTimer() {
+  timerCount = 5;
+}
+
+//displayQuestion();
+//displayPossibleAnswers();
+//resetTimer();
+//startTimer();
+//checkAnswer();
+
+displayNextQuestion();
 
 
 });
