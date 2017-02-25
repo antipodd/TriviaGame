@@ -20,8 +20,8 @@ var trivia = {
     correctAnswer: "Four"
   },
   question4: {
-    question: "Insurrection, picard dance",
-    possibleAnswers: ["Mambo", "Foxtrot", "Waltz", "Rumba"],
+    question: "In \"Star Trek: Insurrection\", what music does Picard request the computer play",
+    possibleAnswers: ["Mambo", "Sonata", "Waltz", "Rumba"],
     correctAnswer: "Mambo"
   },
   question5: {
@@ -30,79 +30,79 @@ var trivia = {
     correctAnswer: "Kirk"
   },
   question6: {
-    question: "",
-    possibleAnswers: [],
-    correctAnswer: ""
+    question: "Which actor guest stars as Captain Morgan Bateson in the episode \"Cause and Effect\"?",
+    possibleAnswers: ["Samuel L. Jackson","Kelsey Grammar", "James Cromwell", "Jason Alexander"],
+    correctAnswer: "Kelsey Grammar"
   },
   question7: {
-    question: "",
-    possibleAnswers: [],
-    correctAnswer:""
+    question: "Which ship picked up Picard and Riker after the crash landing of the <em>Enterprise</em>-D?",
+    possibleAnswers: ["U.S.S. Farragut", "U.S.S. Hood", "U.S.S. Excelsior", "U.S.S. Melbourne"],
+    correctAnswer:"U.S.S. Farragut"
   },
   question8: {
-    question: "",
-    possibleAnswers: [],
-    correctAnswer: ""
+    question: "The destruction of which colony signaled the beginning of the Borg invasion that led to the Battle of Wolf 359?",
+    possibleAnswers: ["New Providence", "New New York", "New Concord", "New Albany"],
+    correctAnswer: "New Providence"
   },
   question9: {
-    question: "",
-    possibleAnswers: [],
-    correctAnswer: ""
+    question: "What is the registry number of the U.S.S. Pegasus?",
+    possibleAnswers: ["NX-72307", "NCC-53847", "NCC-65550", "NX-60147"],
+    correctAnswer: "NCC-53847"
   },
   question10: {
-    question: "",
-    possibleAnswers: [],
-    correctAnswer: ""
+    question: "What disease did Barclay have named after him?",
+    possibleAnswers: ["Barclay\'s Protomorphosis Syndrome", "Barclay\'s Legato Infection", "Barclay\'s Auroral Plague", "Barclay\'s Transporter Psychosis"],
+    correctAnswer: "Barclay\'s Protomorphosis Syndrome"
   },
   question11: {
-    question: "",
-    possibleAnswers: [],
-    correctAnswer: ""
+    question: "Who does Wesley Crusher leave the Enterprise-D with?",
+    possibleAnswers: ["Captain Picard", "The Traveler", "The Passenger", "Beverly Crusher"],
+    correctAnswer: "The Traveler"
   },
   question12: {
-    question: "",
-    possibleAnswers: [],
-    correctAnswer: ""
+    question: "What was the name of Cochrane\'s warp vessel?",
+    possibleAnswers: ["Wyvern", "Griffin", "Basilisk", "Phoenix"],
+    correctAnswer: "Phoenix"
   },
   question13: {
-    question: "",
-    possibleAnswers: [],
-    correctAnswer: ""
+    question: "Which starship discovered Data?",
+    possibleAnswers: ["U.S.S. Yorktown", "U.S.S. Enterprise-C", "U.S.S. Tripoli", "U.S.S. Stargazer"],
+    correctAnswer: "U.S.S. Tripoli"
   },
   question14: {
-    question: "",
-    possibleAnswers: [],
-    correctAnswer: ""
+    question: "What did some Enterprise-D crew call Lieutenant Barclay?",
+    possibleAnswers: ["Lieutenant Brussell Sprout", "Lieutenant Broccoli", "Lieutenant Spinach", "Lieutenant Potato" ],
+    correctAnswer: "Lieutenant Broccoli"
   },
   question15: {
-    question: "",
-    possibleAnswers: [],
-    correctAnswer:""
+    question: "What did Worf refer to as \"a warrior\'s drink\"?",
+    possibleAnswers: ["Blood Wine", "Orange Juice", "Prune Juice", "Raktajino"],
+    correctAnswer:"Prune Juice"
   },
   question16: {
-    question: "",
-    possibleAnswers: [],
-    correctAnswer: ""
+    question: "What Starfleet Academy squadron did Wesley Crusher join?",
+    possibleAnswers: ["Red Squadron", "Nova Squadron", "Omega Squadron", "Alpha Squadron"],
+    correctAnswer: "Nova Squadron"
   },
   question17: {
-    question: "",
-    possibleAnswers: [],
-    correctAnswer:"" 
+    question: "What was the day of Earth\'s first contact with an alien species?",
+    possibleAnswers: ["April 25th, 2045", "March 14th, 2049", "April 5th, 2063", "October 9th, 2161"],
+    correctAnswer:"April 5th, 2063" 
   },
   question18: {
-    question: "",
-    possibleAnswers: [],
-    correctAnswer:""
+    question: "Which theoretical physicist played himself in a holgraphic poker game with Data, Einstein and Isaac Newton?",
+    possibleAnswers: ["Steven Hawking", "Brian Greene", "Michio Kaku", "Peter Higgs"],
+    correctAnswer:"Steven Hawking"
   },
   question19: {
-    question: "",
-    possibleAnswers: [],
-    correctAnswer: ""
+    question: "What race did Captain Picard say he would not send backwards \"into superstition and fear\"?",
+    possibleAnswers: ["Tamarian", "Mintakan", "Bolian", "Tholian"],
+    correctAnswer: "Mintakan"
   },
   question20: {
-    question: "",
-    possibleAnswers: [],
-    correctAnswer: ""
+    question: "What three toxic chemicals filled Earth\'s atmosphere when the Borg changed history?",
+    possibleAnswers: ["Xenon, carbon dioxide and sulfer hexafluoride", "Methane, carbon monoxide and fluorine", "Chlorine, ozone and phosphine", "Neon, promethium, iodine"],
+    correctAnswer: "Methane, carbon monoxide and fluorine"
   }
 };
 
@@ -202,6 +202,7 @@ function outOfTime() {
 		clearInterval(countdown);
     console.log("Time\'s up!");
     questionNumber++;
+    $(".answers").empty();
     setTimeout(displayNextQuestion, 5000);
 	}
 }
