@@ -139,6 +139,9 @@ var images = {
     allCorrect: "assets/images/claplarge.gif",
     mostCorrect: "assets/images/datafist.gif",
     mostIncorrect: "assets/images/lose.gif"
+  },
+  loadingImages: {
+    image1: "assets/images/UFP.jpg", 
   }
 }
 
@@ -197,7 +200,7 @@ function displayNextQuestion() {
 
   } else {
     showResults();
-    $(".number").empty();
+    
     reset();
   }
 }
@@ -212,6 +215,8 @@ function displayPossibleAnswers() {
     answerButton.attr("pos-answer", answerList[i]);
     answerButton.html("<p>" + answerList[i] + "</p>");
     $(".answers").append(answerButton);
+    $(".answers").append("<br>").append("<br>");
+
   }
 }
 
@@ -227,11 +232,17 @@ function timer() {
 	timerCount--;
 	console.log(timerCount);
 	outOfTime();
-	$(".timer").html(timerCount);
+  if (timerCount === 1) {  
+	 $(".timer").html(timerCount + " second");
+  } else if (timerCount > 1) {
+    $(".timer").html(timerCount + " seconds");
+  } else {
+    $(".timer").html("TIME\'s UP!");
+  }
 }
 
 function startTimer() {
-	$(".timer").html(timerCount);//display starting time here
+	$(".timer").html(timerCount + " seconds");//display starting time here
 	console.log(timerCount);
 	countdown = setInterval(timer, 1000);
 }
@@ -275,6 +286,9 @@ function showResults() {
   $(".answers").empty();
   $(".timer").empty();
   $(".question").empty();
+  $(".question").html("&nbsp;");
+  $(".number").empty();
+  $(".number").html("&nbsp;");
   $(".results").html("<p>Answers correct: " + answersCorrect + "</p><br><p>Answers incorrect: " + answersWrong + "</p><br><p>Questions not answered: " + questionsNotAnswered + "</p>");
 }
 
@@ -291,7 +305,7 @@ function reset() {
   var reset = $("<button>");
   reset.addClass("reset");
   reset.html("Reset")
-  $("body").append(reset);
+  $(".results").append(reset);
   $(".reset").on("click", function() {
     console.log($(this));
     $(".results").empty();
@@ -323,13 +337,37 @@ function displayQuestionNumber() {
 
 function displayLoadPage() {
   var initButton = $("<button>");
-  initButton.addClass("initialize");
-  initButton.html("Initialize");
+  initButton.addClass("lcars-button radius initialize");
+  initButton.html("INITIALIZE");
   $(".load").append(initButton);
+  $(".start-image").append("<img src=" + images["loadingImages"]["image1"] + ">")
+}
+
+function displaySecondLoadPage() {
+  $(".title-text").html("<h1>ACCESS GRANTED</h1>")
+    $(".load-button").remove();
+    $(".load-row").append("<div class=initialize-lcars-text>");
+    $(".initialize-lcars-text").addClass("lcars-column u-2-10").append("<div class=spacer>");
+    $(".load-row").append("<div class=initialize-lcars-text2>");
+    $(".initialize-lcars-text2").addClass("lcars-column u-5-10").html("<h2>LCARS LIBRARY COMPUTER ACCESS AND RETRIEVAL</h2>");
+    $(".initialize-lcars-text2").append("<div class=initialize-lcars-text3>");
+    $(".initialize-lcars-text3").addClass("lcars-row").html("<h2>SYSTEM TRIVIA GAME STATUS: OPERATIONAL</h2>");
+}
+
+function clearLoadPage() {
+  $(".lcars-container").remove();
+}
+
+function showQuestionPage() {
+  $(".hide-before-load").removeClass("hide-before-load");
 }
 
 function startGame() {
   $(".initialize").on("click", function() {
+    displaySecondLoadPage();
+    setTimeout(clearLoadPage, 1000);
+    showQuestionPage()
+
     $(".load").empty();
     getRandomQuestions();
     displayNextQuestion();

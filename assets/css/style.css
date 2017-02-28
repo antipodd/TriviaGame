@@ -1,0 +1,106 @@
+@font-face {
+   font-family: "lcars fonts";
+   src: url("../fonts/Swiss 911 Ultra Compressed BT.ttf");
+}
+
+body {
+	background-color: black;
+	font-family: "lcars fonts"
+}
+
+.container {
+	width: 960px;
+	margin: 0 auto;
+}
+
+.lcars-tan-blue-divide {
+ /*  background-image: -webkit-linear-gradient(0deg, transparent 497px, #000 497px), -webkit-linear-gradient(0deg, #fc8 125px, transparent 125px), -webkit-linear-gradient(0deg, transparent 130px, #99f 130px);
+ background-image: -moz-linear-gradient(0deg, transparent 497px, #000 497px), -moz-linear-gradient(0deg, #fc8 125px, transparent 125px), -moz-linear-gradient(0deg, transparent 130px, #99f 130px);
+ background-image: -o-linear-gradient(0deg, transparent 497px, #000 497px), -o-linear-gradient(0deg, #fc8 125px, transparent 125px), -o-linear-gradient(0deg, transparent 130px, #99f 130px);
+ background-image: -ms-linear-gradient(0deg, transparent 497px, #000 497px), -ms-linear-gradient(0deg, #fc8 125px, transparent 125px), -ms-linear-gradient(0deg, transparent 130px, #99f 130px); */
+  background-image: linear-gradient(90deg, transparent 495px, #000 495px), linear-gradient(90deg, #fc8 125px, transparent 125px), linear-gradient(90deg, transparent 130px, #99f 130px);
+}
+
+.lcars-blue-tan-divide {
+ /*  background-image: -webkit-linear-gradient(0deg, transparent 497px, #000 497px), -webkit-linear-gradient(0deg, #fc8 125px, transparent 125px), -webkit-linear-gradient(0deg, transparent 130px, #99f 130px);
+ background-image: -moz-linear-gradient(0deg, transparent 497px, #000 497px), -moz-linear-gradient(0deg, #fc8 125px, transparent 125px), -moz-linear-gradient(0deg, transparent 130px, #99f 130px);
+ background-image: -o-linear-gradient(0deg, transparent 497px, #000 497px), -o-linear-gradient(0deg, #fc8 125px, transparent 125px), -o-linear-gradient(0deg, transparent 130px, #99f 130px);
+ background-image: -ms-linear-gradient(0deg, transparent 497px, #000 497px), -ms-linear-gradient(0deg, #fc8 125px, transparent 125px), -ms-linear-gradient(0deg, transparent 130px, #99f 130px); */
+  background-image: linear-gradient(90deg, transparent 495px, #000 495px), linear-gradient(90deg, #99f 125px, transparent 125px), linear-gradient(90deg, transparent 130px, #fc8 130px);
+}
+
+.lcars-divider {
+	border-left: 0px solid #000;
+}
+
+.lcars-menu li.tall, ol.lcars-menu li.tall, ul.lcars-menu li.tall {
+	height: 100px;
+}
+
+.lcars-menu li, ol.lcars-menu li, ul.lcars-menu li {
+	height: 350px;
+}
+
+.spacer {
+	height:80px;
+	width: 100%;
+	background-color: yellow;
+}
+
+.lcars-button.radius {
+	/* width: 100%; */
+	font-size: 40px;
+	font-family: "lcars fonts";
+	
+	font-weight: normal;
+}
+
+.lcars-button.radius:hover {
+	/* width: 100%; */
+	background-color: #cc6699;
+}
+
+/* .start-image img {
+	height: 200px;
+	width: 20px; */
+/* } */
+
+.start-image img {
+	height: 350px;
+	padding-left:30px;
+	/* background-color: blue; */
+}
+
+h1 {
+	color: #ff9f00;
+	font-weight: normal;
+	font-size: 60px;
+}
+
+.title-text h1 {
+	color: #ff9f00;
+	font-weight: normal;
+	font-size: 90px;
+	margin-left: 22px;
+}
+
+.initialize-lcars-text2 h2 {
+	color: #ff9f00;
+	font-weight: normal;
+	font-size: 40px;
+	margin-left: 52px;
+}
+
+.initialize-lcars-text3 h2 {
+	color: #ff9f00;
+	font-weight: normal;
+	font-size: 40px;
+	margin-left: 70px;
+}
+
+.question {
+	color: #ff9f00;
+	font-weight: normal;
+	font-size: 90px;
+	/* margin-left: 22px; */
+}
