@@ -1,3 +1,14 @@
+.hide-before-load {
+	display: none;
+}
+
+.lcars-container2 {
+  background: #000;
+  padding: 1.5%;
+  width: 100%;
+  height: 100%;
+}
+
 @font-face {
    font-family: "lcars fonts";
    src: url("../fonts/Swiss 911 Ultra Compressed BT.ttf");
@@ -44,7 +55,7 @@ body {
 .spacer {
 	height:80px;
 	width: 100%;
-	background-color: yellow;
+	background-color: black;
 }
 
 .lcars-button.radius {
@@ -98,9 +109,254 @@ h1 {
 	margin-left: 70px;
 }
 
-.question {
+.left-edge {
+	height: 50px;
+	width: 75px;
+	background-color: #a7d4ff;
+	border-radius: 25px 0px 0px 25px;
+	/* float: left; */
+	display: inline-block;
+}
+
+.top-edge {
+	display: inline-block;
+	height: 50px;
+	width: 935px;
+	background-color: #a7d4ff;
+	float: right;
+}
+
+.right-edge {
+	height: 50px;
+	width: 75px;
+	background-color: #a7d4ff;
+	border-radius: 0px 25px 25px 0px;
+	float: right;
+	border-left: 5px solid black;
+}
+
+.q-title-text {
+	font-family: "lcars fonts";
+	color: #ff9f00;
+	display: inline-block;
+	clear: both;
+	padding-left: 20px;
+	
+}
+
+.q-title-text h2 {
+	font-size: 60px;
+	font-weight: normal;
+	
+}
+
+
+.tan-header {
+	height: 140px;
+	width: 20px;
+	background-color: #fc8;
+}
+
+
+.tan-elbow {
+	height: 200px;
+}
+
+.timer-top-elbow {
+	border-left: 5px solid black;
+	height: 100px;
+}
+
+.q-right-1 {
+	height: 100px;
+	margin-left:21px;
+	border-top: 5px solid black;
+	background-color: #99f;
+	
+}
+
+.q-right-2 {
+	height: 300px;
+	margin-left:21px;
+	border-top: 5px solid black;
+	background-color: #ff9a66;
+}
+
+.q-right-3 {
+	height: 150px;
+	margin-left:21px;
+	border-top: 5px solid black;
+	background-color: #ff9a66;
+}
+
+.timer-top {
+	height: 40px;
+	width: 100%;
+	background-color: #99f;
+}
+
+.timer-top-right {
+	height: 40px;
+	width: 100%;
+	border-radius: 0px 20px 20px 0px;
+	background-color: #99f;
+}
+
+.timer-text {
+	font-size: 40px;
+	font-weight: normal;
+	padding-left: 30px;
+	color: #ff9f00;
+}
+
+.q-area {
+	padding-left: 2%;
+}
+
+.timer-left-side {
+	height: 150px;
+	/* margin-left:21px; */
+	border-top: 5px solid black;
+	border-left: 5px solid black;
+	background-color: #fe9900;
+	margin-right: 30px;
+	
+	
+}
+.lcars-column.u-1-5.timer-left-side {
+	width: 17%;
+}
+
+.timer-bottom-elbow {
+	border-left: 5px solid black;
+	border-top: 5px solid black;
+	height: 75px;
+}
+
+.timer-bottom {
+	border-left: 5px solid black;
+	height: 15px;
+	width: 100%;
+	background-color: #99f;
+	margin-top: 65px;
+}
+
+.timer-bottom-right {
+	border-left: 5px solid black;
+	height: 15px;
+	width: 100%;
+	background-color: #99f;
+	margin-top: 65px;
+	/* border-radius: 0px 7.5px 7.5px 0px; */
+}
+
+.options-top {
+	height: 40px;
+	width: 100%;
+	background-color: #cc6666;
+}
+
+.options-top-right {
+	height: 40px;
+	width: 100%;
+	border-radius: 0px 20px 20px 0px;
+	background-color: #cc6666;
+}
+
+.options-text {
+	font-size: 40px;
+	font-weight: normal;
+	padding-left: 15px;
+	color: #ff9f00;
+}
+
+.options-left-side {
+	height: 220px;
+	/* margin-left:21px; */
+	border-top: 5px solid black;
+	border-left: 5px solid black;
+	background-color: #cb99cc;
+	margin-right: 30px;
+	
+	
+}
+.lcars-column.u-1-5.options-left-side {
+	width: 17%;
+}
+
+.options-bottom-elbow {
+	border-left: 5px solid black;
+	border-top: 5px solid black;
+	height: 75px;
+	background-color: #cc6699 !important;
+}
+
+.options-bottom {
+	border-left: 5px solid black;
+	height: 15px;
+	width: 100%;
+	background-color: #ff9a66;
+	margin-top: 65px;
+}
+
+.options-bottom-right {
+	border-left: 5px solid black;
+	height: 15px;
+	width: 100%;
+	background-color: #ff9a66;
+	margin-top: 65px;
+	/* border-radius: 0px 7.5px 7.5px 0px; */
+}
+
+.options-top-elbow {
+	border-left: 5px solid black;
+	height: 100px;
+	background-color: #cc6666 !important;
+}
+
+.number p {
 	color: #ff9f00;
 	font-weight: normal;
 	font-size: 90px;
 	/* margin-left: 22px; */
+}
+
+.question {
+	padding-top: 10px;
+	color: #ff9f00;
+	font-weight: normal;
+	font-size: 50px;
+	/* margin-left: 22px; */
+}
+
+.timer {
+	color: #ff9f00;
+	font-weight: normal;
+	font-size: 150px;
+	/* margin-left: 22px; */
+}
+
+.results {
+	color: #ff9f00;
+	font-weight: normal;
+	font-size: 30px;
+}.
+
+.reset {
+	color: #ff9f00;
+	font-weight: normal;
+	font-size: 30px;
+}
+
+.answers {
+	height:220px;
+}
+
+.answers img {
+	height: 100%;
+}
+
+.lcars-button.radius.answer {
+	font-size: 30px;
+	padding: 5px 15px;
 }

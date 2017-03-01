@@ -142,10 +142,13 @@ var images = {
   },
   loadingImages: {
     image1: "assets/images/UFP.jpg", 
+  },
+  outOfTimeImage: {
+    image1: "assets/images/explode.gif"
   }
 }
 
-
+var gameState = false;
 var questionArray = [];
 var questionNumber = 0;
 var currentQuestion;
@@ -163,6 +166,8 @@ function resetVars() {
   answersCorrect = 0;
   answersWrong = 0;
   questionsNotAnswered = 0;
+  timerCount = 0;
+  countdown = null;
 }
 
 //console.log(first)
@@ -197,7 +202,7 @@ function displayNextQuestion() {
     displayPossibleAnswers();
     resetTimer();
     startTimer();
-
+    correctResetDisplay();
   } else {
     showResults();
     
@@ -211,7 +216,7 @@ function displayPossibleAnswers() {
   var answerList = trivia[currentQuestion]["possibleAnswers"];
   for (var i = 0; i < answerList.length; i++) {
     var answerButton = $("<button>");
-    answerButton.addClass("answer");
+    answerButton.addClass("answer lcars-button radius");
     answerButton.attr("pos-answer", answerList[i]);
     answerButton.html("<p>" + answerList[i] + "</p>");
     $(".answers").append(answerButton);
@@ -222,7 +227,9 @@ function displayPossibleAnswers() {
 
 function displayCorrectAnswer() {
 	console.log("Correct!");
-  $(".answers").html("<p>Correct!</p>");
+  $(".reset").html("<p>Correct!</p>");
+  $(".reset").css({"color":"#ff9f00", "font-size": "50px"});
+  $(".answers").empty();
   $(".answers").append("<img src=" + trivia[currentQuestion]["image"] + ">")
   questionNumber++;
   answersCorrect++;
@@ -257,8 +264,12 @@ function outOfTime() {
     console.log("Time\'s up!");
     questionNumber++;
     questionsNotAnswered++;
-    $(".answers").html("<p>Time\'s up!</p>")
-    //$(".answers").empty(); //separate display stuff
+    /*$(".answers").html("<p>Time\'s up!</p>")*/
+    /*$(".answers").html("<p>Time\'s up!</p>")*/
+    $(".answers").empty(); //separate display stuff
+    $(".reset").html("<p>The correct answer is " + trivia[currentQuestion]["correctAnswer"] + "</p>");
+    $(".reset").css({"color":"#ff9f00", "font-size": "50px"});
+    $(".answers").append("<img src=" + images.outOfTimeImage.image1 + ">");
     setTimeout(displayNextQuestion, 5000);
 	}
 }
@@ -270,7 +281,9 @@ function chooseWrongImage() {
 
 function displayWrongAnswer() {
   console.log("wrong! The correct answer is " + trivia[currentQuestion]["correctAnswer"]);
-  $(".answers").html("<p>Wrong!</p>");
+  $(".answers").empty();
+  $(".reset").html("<p>Incorrect. The correct answer is " + trivia[currentQuestion]["correctAnswer"] + "</p>");
+  $(".reset").css({"color":"#ff9f00", "font-size": "50px"});
   chooseWrongImage();
   console.log(randomImage)
   $(".answers").append("<img src=" + images["wrongImages"][randomImage] + ">");
@@ -278,15 +291,26 @@ function displayWrongAnswer() {
   answersWrong++;
 }
 
+function correctResetDisplay() {
+  $(".reset").html("<div class = spacer>");
+}
+
 function resetTimer() {
-  timerCount = 5;
+  timerCount = 10;
 }
 
 function showResults() {
-  $(".answers").empty();
+  $(".answers").empty().css("height", "0px"); //remove height to show results
   $(".timer").empty();
   $(".question").empty();
-  $(".question").html("&nbsp;");
+  if (answersCorrect === 5) {
+    $(".question").append("<img src=" + images.endingImages.allCorrect + ">");
+  } else if ((answersCorrect > answersWrong) && (answersCorrect > questionsNotAnswered)) {
+    $(".question").append("<img src=" + images.endingImages.mostCorrect + ">");
+  } else {
+    $(".question").append("<img src=" + images.endingImages.mostIncorrect + ">");
+  }
+  //$(".question").html("&nbsp;");
   $(".number").empty();
   $(".number").html("&nbsp;");
   $(".results").html("<p>Answers correct: " + answersCorrect + "</p><br><p>Answers incorrect: " + answersWrong + "</p><br><p>Questions not answered: " + questionsNotAnswered + "</p>");
@@ -299,22 +323,19 @@ function showResults() {
 //checkAnswer();
 
 //displayNextQuestion();
-checkAnswer();
+
 
 function reset() {
   var reset = $("<button>");
-  reset.addClass("reset");
-  reset.html("Reset")
-  $(".results").append(reset);
+  reset.addClass("lcars-button radius");
+  reset.html("PLAY AGAIN?")
+  $(".reset").html(reset);
   $(".reset").on("click", function() {
-    console.log($(this));
-    $(".results").empty();
-    $(".reset").remove();
-    resetVars();
-    getRandomQuestions();
-    console.log(questionArray);
-    displayNextQuestion();
+    stopTimer(); //prevents timer from getting quicker after every reset
+    $(".answers").css("height", "220px");//reset the height so that gif or jpg shows scaled correctly
+    startGame();
   });
+  
 }
 
 function checkAnswer() {
@@ -356,6 +377,11 @@ function displaySecondLoadPage() {
 
 function clearLoadPage() {
   $(".lcars-container").remove();
+  showQuestionPage()
+    
+    getRandomQuestions();
+    displayNextQuestion();
+    gameState = true;
 }
 
 function showQuestionPage() {
@@ -363,18 +389,31 @@ function showQuestionPage() {
 }
 
 function startGame() {
+  if (gameState === false) {
   $(".initialize").on("click", function() {
     displaySecondLoadPage();
-    setTimeout(clearLoadPage, 1000);
-    showQuestionPage()
-
+    setTimeout(clearLoadPage, 2000);
+    //showQuestionPage()
     $(".load").empty();
+    //getRandomQuestions();
+    //displayNextQuestion();
+    //gameState = true;
+  });
+  } else {
+    console.log($(this));
+    $(".results").empty();
+    $(".reset").empty();
+    resetVars();
     getRandomQuestions();
+    console.log(questionArray);
     displayNextQuestion();
-  })
+    correctResetDisplay();
+  
+  }
 }
 
 displayLoadPage();
 startGame();
+checkAnswer();
 
 });
