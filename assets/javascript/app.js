@@ -190,8 +190,8 @@ function getRandomQuestions() {
 
 function displayQuestion() {
 	currentQuestion = questionArray[questionNumber];
-	console.log(currentQuestion);
-	console.log(trivia[currentQuestion]["question"]); //if currentQuestion is a string then I can't seem to use dot notation due to the "" in the string
+	//console.log(currentQuestion);
+	//console.log(trivia[currentQuestion]["question"]); //if currentQuestion is a string then I can't seem to use dot notation due to the "" in the string
   $(".question").html(trivia[currentQuestion]["question"]);
 }
 
@@ -212,7 +212,7 @@ function displayNextQuestion() {
 
 function displayPossibleAnswers() {
   $(".answers").empty();
-	console.log(trivia[currentQuestion]["possibleAnswers"])
+	//console.log(trivia[currentQuestion]["possibleAnswers"])
   var answerList = trivia[currentQuestion]["possibleAnswers"];
   for (var i = 0; i < answerList.length; i++) {
     var answerButton = $("<button>");
@@ -226,7 +226,7 @@ function displayPossibleAnswers() {
 }
 
 function displayCorrectAnswer() {
-	console.log("Correct!");
+	//console.log("Correct!");
   $(".reset").html("<p>Correct!</p>");
   $(".reset").css({"color":"#ff9f00", "font-size": "50px"});
   $(".answers").empty();
@@ -237,7 +237,7 @@ function displayCorrectAnswer() {
 
 function timer() {
 	timerCount--;
-	console.log(timerCount);
+	//console.log(timerCount);
 	outOfTime();
   if (timerCount === 1) {  
 	 $(".timer").html(timerCount + " second");
@@ -250,7 +250,7 @@ function timer() {
 
 function startTimer() {
 	$(".timer").html(timerCount + " seconds");//display starting time here
-	console.log(timerCount);
+	//console.log(timerCount);
 	countdown = setInterval(timer, 1000);
 }
 
@@ -261,7 +261,7 @@ function stopTimer() {
 function outOfTime() {
 	if (timerCount === 0) {
 		clearInterval(countdown);
-    console.log("Time\'s up!");
+    //console.log("Time\'s up!");
     questionNumber++;
     questionsNotAnswered++;
     /*$(".answers").html("<p>Time\'s up!</p>")*/
@@ -280,12 +280,12 @@ function chooseWrongImage() {
 }
 
 function displayWrongAnswer() {
-  console.log("wrong! The correct answer is " + trivia[currentQuestion]["correctAnswer"]);
+  //console.log("wrong! The correct answer is " + trivia[currentQuestion]["correctAnswer"]);
   $(".answers").empty();
   $(".reset").html("<p>Incorrect. The correct answer is " + trivia[currentQuestion]["correctAnswer"] + "</p>");
   $(".reset").css({"color":"#ff9f00", "font-size": "50px"});
   chooseWrongImage();
-  console.log(randomImage)
+  //console.log(randomImage)
   $(".answers").append("<img src=" + images["wrongImages"][randomImage] + ">");
   questionNumber++; //make this a function maybe?
   answersWrong++;
@@ -331,9 +331,11 @@ function reset() {
   reset.html("PLAY AGAIN?")
   $(".reset").html(reset);
   $(".reset").on("click", function() {
+    //console.log('reset clicked')
     stopTimer(); //prevents timer from getting quicker after every reset
     $(".answers").css("height", "220px");//reset the height so that gif or jpg shows scaled correctly
     startGame();
+    $(this).off() //need this to prevent player clicking in area where reset button appears which would reset the game. Thanks Brian!
   });
   
 }
@@ -341,7 +343,7 @@ function reset() {
 function checkAnswer() {
   $(".answers").on("click", ".answer", function() {
     stopTimer();
-    console.log($(this).attr("pos-answer"));
+    //console.log($(this).attr("pos-answer"));
       //checkAnswer();
       if ($(this).attr("pos-answer") === trivia[currentQuestion]["correctAnswer"]) {
         displayCorrectAnswer();
@@ -400,12 +402,12 @@ function startGame() {
     //gameState = true;
   });
   } else {
-    console.log($(this));
+    //console.log($(this));
     $(".results").empty();
     $(".reset").empty();
     resetVars();
     getRandomQuestions();
-    console.log(questionArray);
+    //console.log(questionArray);
     displayNextQuestion();
     correctResetDisplay();
   

@@ -111,7 +111,7 @@ h1 {
 
 .left-edge {
 	height: 50px;
-	width: 75px;
+	width: 100%;
 	background-color: #a7d4ff;
 	border-radius: 25px 0px 0px 25px;
 	/* float: left; */
@@ -121,17 +121,17 @@ h1 {
 .top-edge {
 	display: inline-block;
 	height: 50px;
-	width: 935px;
+	width: 100%;
 	background-color: #a7d4ff;
-	float: right;
+	/*float: right;*/
 }
 
 .right-edge {
 	height: 50px;
-	width: 75px;
+	width: 100%;
 	background-color: #a7d4ff;
 	border-radius: 0px 25px 25px 0px;
-	float: right;
+	/* float: right; */
 	border-left: 5px solid black;
 }
 
@@ -139,13 +139,13 @@ h1 {
 	font-family: "lcars fonts";
 	color: #ff9f00;
 	display: inline-block;
-	clear: both;
-	padding-left: 20px;
+	/* clear: both; */
+	padding-left: 60px;
 	
 }
 
 .q-title-text h2 {
-	font-size: 60px;
+	font-size: 50px;
 	font-weight: normal;
 	
 }
