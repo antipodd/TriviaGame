@@ -133,7 +133,7 @@ var images = {
     image2: "assets/images/picardpalm1.gif",
     image3: "assets/images/picardpalm2.gif",
     image4: "assets/images/rikerpalm.gif",
-    image5: "assets/images/worfpalm.gif"
+    image5: "assets/images/Worfpalm.gif"
   },
   endingImages: {
     allCorrect: "assets/images/claplarge.gif",
